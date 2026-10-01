@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>FishDojo</title>
+  <meta name="description" content="A classroom aquarium: good deeds earn food, food grows your fish.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'><rect width='16' height='16' fill='%232188bd'/><rect x='4' y='5' width='7' height='6' fill='%23ff8c1a'/><rect x='5' y='4' width='5' height='8' fill='%23ff8c1a'/><rect x='1' y='4' width='3' height='2' fill='%23ffc94a'/><rect x='1' y='10' width='3' height='2' fill='%23ffc94a'/><rect x='2' y='6' width='2' height='4' fill='%23ffc94a'/><rect x='9' y='6' width='1' height='1' fill='%23000'/></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="stage">
+    <header id="hud">
+      <button class="logo" id="btnHome" title="Choose a grade">FISH<span>DOJO</span></button>
+      <nav id="gradeTabs" class="teacher-only"></nav>
+      <div id="classStats"></div>
+      <div class="hud-actions">
+        <button class="btn btn-yellow teacher-only" id="btnClassDeed">⭐ Class Deed</button>
+        <button class="btn btn-orange teacher-only" id="btnFeedAll">🍤 Feeding Time</button>
+        <button class="btn icon teacher-only" id="btnSettings" title="Class setup">⚙️</button>
+        <button class="btn icon" id="btnSound" title="Sound on/off">🔊</button>
+        <button class="btn icon" id="btnLock" title="Student mode">🔓</button>
+        <button class="btn icon" id="btnFull" title="Full screen">⛶</button>
+      </div>
+    </header>
+
+    <canvas id="tank"></canvas>
+
+    <div id="empty" class="hidden">
+      <div class="empty-card">
+        <h2>No fish yet!</h2>
+        <p>Add up to 24 students and each one gets a fish.</p>
+        <div class="row">
+          <button class="btn btn-yellow" id="btnEmptySetup">➕ Add Students</button>
+          <button class="btn btn-blue" id="btnEmptyDemo">🐠 Try a Demo Class</button>
+        </div>
+      </div>
+    </div>
+
+    <section id="picker">
+      <div class="picker-inner">
+        <h1 class="title">FISH<span>DOJO</span></h1>
+        <p class="tagline">Good deeds feed the fish!</p>
+        <div class="grade-cards" id="gradeCards"></div>
+        <p class="hint">Tip: tap ⛶ for full screen on the smartboard</p>
+      </div>
+    </section>
+
+    <div id="modalRoot"></div>
+  </div>
+
+  <script src="js/sprites.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
