@@ -8,7 +8,7 @@ Built for a classroom smartboard: one full-screen 1920×1080 layout that scales 
 
 ## How it works
 
-1. **Pick a grade**: 2nd, 3rd or 4th. Each grade is its own class of up to **24 students**.
+1. **Pick a grade**: 2nd, 3rd or 4th. Each grade is its own class of up to **30 students**.
 2. **Tap a fish** to open that student's card, then tap a **good deed** (Helping Others, Kindness, Hard Work…). Each deed gives **+1 food**, and an orange badge on the fish shows the food waiting.
 3. The student taps **FEED MY FISH!** Food pellets drop into the tank, the fish swims up and eats them, and it grows.
 4. Each fish shows the **student's name**, **how many times it has been fed** and **how big it is**:
@@ -61,4 +61,4 @@ python3 -m http.server 8000   # then open http://localhost:8000
 
 ## Credits
 
-Fonts: [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) and [VT323](https://fonts.google.com/specimen/VT323), both under the SIL Open Font License (see `fonts/`). All fish and scenery are generated in code as pixel art.
+Fonts: [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P), [VT323](https://fonts.google.com/specimen/VT323) and [Jersey 10](https://fonts.google.com/specimen/Jersey+10) (student names, with full Turkish letter support), all under the SIL Open Font License (see `fonts/`). All fish and scenery are generated in code as pixel art.

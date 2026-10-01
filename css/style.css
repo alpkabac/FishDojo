@@ -1,6 +1,12 @@
 /* FishDojo – everything is laid out on a fixed 1920x1080 stage that is scaled to fit the screen. */
-@font-face { font-family: 'Press Start 2P'; src: url(../fonts/PressStart2P-latin.woff2) format('woff2'); font-display: swap; }
-@font-face { font-family: 'VT323'; src: url(../fonts/VT323-latin.woff2) format('woff2'); font-display: swap; }
+/* latin + latin-ext subsets so Turkish names (İ Ş Ğ Ç Ö Ü ı) render in the pixel fonts */
+@font-face { font-family: 'Press Start 2P'; src: url(../fonts/PressStart2P-latin.woff2) format('woff2'); font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Press Start 2P'; src: url(../fonts/PressStart2P-latin-ext.woff2) format('woff2'); font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* Jersey 10 for student names: clear letters and proper Turkish capitals (Ö, İ, Ş…) */
+@font-face { font-family: 'Jersey 10'; src: url(../fonts/Jersey10-latin.woff2) format('woff2'); font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Jersey 10'; src: url(../fonts/Jersey10-latin-ext.woff2) format('woff2'); font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'VT323'; src: url(../fonts/VT323-latin.woff2) format('woff2'); font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'VT323'; src: url(../fonts/VT323-latin-ext.woff2) format('woff2'); font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 :root {
   --ink: #0b1530;
   --navy: #10234a;
@@ -15,6 +21,7 @@
   --text: #eaf6ff;
   --pixel: 'Press Start 2P', monospace;
   --body: 'VT323', monospace;
+  --name: 'Jersey 10', 'VT323', sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -173,7 +180,7 @@ html, body {
 .sm-head { display: flex; gap: 40px; align-items: center; }
 .sm-fish { width: 300px; height: 210px; background: radial-gradient(#2fa6d2, #145385); border: 5px solid var(--ink); border-radius: 18px; image-rendering: pixelated; flex: none; }
 .sm-info { flex: 1; min-width: 0; }
-.sm-name { font-family: var(--pixel); font-size: 46px; color: #fff; margin: 0 0 18px; text-shadow: 4px 4px 0 var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 80px; }
+.sm-name { font-family: var(--name); font-size: 80px; line-height: 1; color: #fff; margin: 0 0 18px; text-shadow: 4px 4px 0 var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 80px; }
 .chips { display: flex; gap: 14px; flex-wrap: wrap; }
 .chip { background: #0b1a3a; border: 4px solid var(--ink); border-radius: 14px; padding: 6px 18px; font-size: 38px; }
 .chip b { font-weight: normal; color: var(--yellow); }

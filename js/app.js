@@ -2,7 +2,7 @@
 (function () {
   const FD = window.FD;
   const KEY = 'fishdojo-v1';
-  const MAX_STUDENTS = 24;
+  const MAX_STUDENTS = 30;
   const GRADES = [
     { id: 'g2', num: '2nd', label: '2nd Grade' },
     { id: 'g3', num: '3rd', label: '3rd Grade' },
@@ -549,7 +549,7 @@
 
   // ---------------------------------------------------------------- boot
   const fontsReady = document.fonts ? Promise.race([
-    Promise.all([document.fonts.load('20px "Press Start 2P"'), document.fonts.load('30px VT323')]),
+    Promise.all([document.fonts.load('20px "Press Start 2P"', 'Aİ'), document.fonts.load('30px VT323', 'Aİ'), document.fonts.load('40px "Jersey 10"', 'Aİ')]),
     new Promise((r) => setTimeout(r, 2500)),
   ]) : Promise.resolve();
   fontsReady.then(() => {

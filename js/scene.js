@@ -250,7 +250,7 @@
         const off = ((best.cols - inRow) * best.cw) / 2;
         cells.push({ x: SWIM.x + off + c * best.cw, y: SWIM.y + r * best.ch, w: best.cw, h: best.ch });
       }
-      this.sizeMul = clamp(Math.min(best.cw / 313, best.ch / 211), 1, 1.5);
+      this.sizeMul = clamp(Math.min(best.cw / 313, best.ch / 211), 0.85, 1.5);
       return cells;
     }
 
@@ -603,18 +603,24 @@
       const lv = FD.levelOf(fed);
       const h = f.sprite.h * f.px;
       let name = s.name || '?';
-      if (name.length > 12) name = name.slice(0, 11) + '…';
+      if (name.length > 14) name = name.slice(0, 13) + '…';
+      const c = f.cell;
 
+      // shrink the text when a long name would spill into the neighbour's column
+      const room = c.w - 34;
       g.textBaseline = 'top';
       g.textAlign = 'left';
-      g.font = '22px "Press Start 2P", monospace';
-      const nameW = g.measureText(name).width;
-      g.font = '36px VT323, monospace';
+      const NAME = (px) => `${px}px "Jersey 10", VT323, sans-serif`;
+      g.font = NAME(38);
+      let nameSize = 38, nameW = g.measureText(name).width;
+      if (nameW > room) { nameSize = Math.max(22, Math.floor((38 * room) / nameW)); g.font = NAME(nameSize); nameW = g.measureText(name).width; }
       const fedTxt = `Fed ${fed}  `;
-      const fedW = g.measureText(fedTxt).width, lvW = g.measureText(lv.name).width;
+      let statSize = 36;
+      g.font = '36px VT323, monospace';
+      let fedW = g.measureText(fedTxt).width, lvW = g.measureText(lv.name).width;
+      if (fedW + lvW > room) { statSize = Math.max(24, Math.floor((36 * room) / (fedW + lvW))); g.font = `${statSize}px VT323, monospace`; fedW = g.measureText(fedTxt).width; lvW = g.measureText(lv.name).width; }
       const statsW = fedW + lvW;
       const pw = Math.max(nameW, statsW) + 26, ph = LABEL_H - 4;
-      const c = f.cell;
       const cx = clamp(pw < c.w ? clamp(f.x, c.x + pw / 2 + 2, c.x + c.w - pw / 2 - 2) : c.x + c.w / 2, pw / 2 + 4, TW - pw / 2 - 4);
       const top = Math.max(4, f.drawY - h / 2 - ph - 4);
       const left = cx - pw / 2;
@@ -625,10 +631,11 @@
       roundRect(g, left, top, pw, ph, 10); g.stroke();
       g.globalAlpha = 1;
 
-      g.font = '22px "Press Start 2P", monospace';
-      g.fillStyle = '#0b1530'; g.fillText(name, cx - nameW / 2 + 2, top + 9);
-      g.fillStyle = '#ffffff'; g.fillText(name, cx - nameW / 2, top + 7);
-      g.font = '36px VT323, monospace';
+      const ny = top + (38 - nameSize) / 2;
+      g.font = NAME(nameSize);
+      g.fillStyle = '#0b1530'; g.fillText(name, cx - nameW / 2 + 2, ny + 2);
+      g.fillStyle = '#ffffff'; g.fillText(name, cx - nameW / 2, ny);
+      g.font = `${statSize}px VT323, monospace`;
       g.fillStyle = '#cfe9ff'; g.fillText(fedTxt, cx - statsW / 2, top + 30);
       g.fillStyle = lv.color; g.fillText(lv.name, cx - statsW / 2 + fedW, top + 30);
 
@@ -654,7 +661,7 @@
       g.globalAlpha = a;
       const y = 120 + (1 - Math.min(1, (1 - p) * 6)) * -40;
       g.textAlign = 'center'; g.textBaseline = 'middle';
-      g.font = '46px "Press Start 2P", monospace';
+      g.font = '76px "Jersey 10", VT323, sans-serif';
       const w = Math.min(TW - 80, g.measureText(b.text).width + 100);
       g.fillStyle = 'rgba(6,18,44,0.8)';
       roundRect(g, TW / 2 - w / 2, y - 60, w, b.sub ? 150 : 110, 18); g.fill();
